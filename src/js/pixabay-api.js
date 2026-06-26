@@ -31,6 +31,7 @@ const pixabayApiInstance = axios.create({
 // }
 
 export default async function getImagesByQuery(query, page, perPage) {
+    if (perPage < 15){perPage = 15} 
     try {
       const response = await pixabayApiInstance.get('', {
         params: {

@@ -13,19 +13,39 @@ const pixabayApiInstance = axios.create({
 
 
 
-export default function getImagesByQuery(query) {
-    return pixabayApiInstance.get('', {
+// export default function getImagesByQuery(query) {
+//     return pixabayApiInstance.get('', {
+//         params: {
+//           q: query,
+//           image_type: 'photo',
+//           orientation: 'horizontal',
+//           safesearch: true,
+//         },
+//       })
+//       .then(response => {
+//         return response.data.hits;
+//       })
+//       .catch(error => {
+//         throw error;
+//       })   
+// }
+
+export default async function getImagesByQuery(query, page, perPage) {
+    try {
+      const response = await pixabayApiInstance.get('', {
         params: {
           q: query,
           image_type: 'photo',
           orientation: 'horizontal',
           safesearch: true,
+          page: page,
+          per_page: perPage,
         },
-      })
-      .then(response => {
-        return response.data.hits;
-      })
-      .catch(error => {
-        throw error;
-      })   
+      });
+      return response.data;
+    } 
+    catch (error) {
+      throw error;
+    }
+    
 }

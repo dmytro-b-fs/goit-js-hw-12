@@ -178,3 +178,6 @@ body{
   }
 }
 
+.hidden{
+  display: none;
+}
